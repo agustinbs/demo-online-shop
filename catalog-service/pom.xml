@@ -137,6 +137,7 @@
 		</configuration> </plugin> </plugins> </build -->
 	
 	<build>
+    <pluginManagement>			
 		<plugins>
 			<!-- Compiler plugin enforces Java 1.7 compatibility and activates annotation 
 				processors -->
@@ -221,6 +222,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+    </pluginManagement>				
 	</build>
 
 	<!-- Default sample commands: 

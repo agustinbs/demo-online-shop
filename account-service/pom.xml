@@ -117,7 +117,11 @@
 		<include>${project.build.finalName}.jar</include> </resource> </resources> 
 		</configuration> </plugin> </plugins> </build -->
 		
+		
+
+
 	<build>
+	    <pluginManagement>
 		<plugins>
 			<!-- Compiler plugin enforces Java 1.7 compatibility and activates annotation 
 				processors -->
@@ -202,6 +206,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+    </pluginManagement>				
 	</build>
 
 	<!-- Default sample commands: mvn -Pf8-build ... build Docker images and 

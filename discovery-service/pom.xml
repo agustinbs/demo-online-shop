@@ -95,6 +95,7 @@
     </build-->
 
   <build>
+    <pluginManagement>		
     <plugins>
       <!-- Compiler plugin enforces Java 1.7 compatibility and activates annotation processors -->
       <plugin>
@@ -178,6 +179,7 @@
         </configuration>
       </plugin>
     </plugins>
+    </pluginManagement>		    
   </build>
 
   <!--

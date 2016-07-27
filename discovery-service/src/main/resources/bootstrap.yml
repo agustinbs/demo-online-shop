@@ -3,3 +3,9 @@ server:
 spring:
   application:
     name: discovery-service
+  cloud:
+    inetutils:
+      ignoredInterfaces:
+        - .*Gigabit.*
+        - .*VMware.*
+        - .*VirtualBox.*

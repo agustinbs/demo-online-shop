@@ -15,6 +15,11 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
+    inetutils:
+      ignoredInterfaces:
+        - .*Gigabit.*
+        - .*VMware.*
+        - .*VirtualBox.*      
 spring.profiles.active: development
 ---
 spring:

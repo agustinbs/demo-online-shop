@@ -10,7 +10,7 @@ spring:
    config:
     server:
      git:
-      uri: https://github.com/jubenite/demo-config-repo
+      uri: https://github.com/agustinbs/demo-config-repo
 http:
  proxy:
   host: 10.49.1.1
@@ -22,7 +22,12 @@ spring:
    config:
     server:
      git:
-      uri: https://github.com/jubenite/demo-config-repo
+      uri: https://github.com/agustinbs/demo-config-repo
+   inetutils:
+     ignoredInterfaces:
+       - .*Gigabit.*
+       - .*VMware.*
+       - .*VirtualBox.*      
 http:
  proxy:
   host: 10.49.1.1
@@ -34,7 +39,7 @@ spring:
    config:
     server:
      git:
-      uri: https://github.com/jubenite/demo-config-repo
+      uri: https://github.com/agustinbs/demo-config-repo
 
 #logging:
 #native:

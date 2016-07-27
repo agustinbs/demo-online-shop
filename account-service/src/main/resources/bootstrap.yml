@@ -15,6 +15,12 @@ spring:
   cloud:
     config:
       uri: http://${CONFIG_SERVICE_SERVICE_HOST}:${CONFIG_SERVICE_SERVICE_PORT}
+    inetutils:
+      ignoredInterfaces:
+        - .*Gigabit.*
+        - .*VMware.*
+        - .*VirtualBox.*
+---              
 spring.profiles.active: development
 ---
 spring:
@@ -24,3 +30,4 @@ spring:
       uri: http://${CONFIG_SERVICE_SERVICE_HOST}:${CONFIG_SERVICE_SERVICE_PORT}
 #logging:
 #  file: logs/dev_app.log
+
