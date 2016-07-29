@@ -20,7 +20,9 @@
 		<module>order-service</module>
 		<module>account-service</module>
 		<module>user-service</module>
+<!-- 
 		<module>payment-service</module>
+ -->		
 		<module>config-service</module>
 		<module>discovery-service</module>
 		<module>online-store-web</module>
@@ -28,7 +30,9 @@
 		<module>edge-service</module>
 		<module>shopping-cart-service</module>
 		<module>hystrix-dashboard</module>
+<!-- 		
 		<module>turbine</module>
+-->		
 		<module>admin-server</module>
 	</modules>
 
@@ -109,5 +113,96 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	<build>
+	    <pluginManagement>
+		<plugins>
+			<!-- Compiler plugin enforces Java 1.7 compatibility and activates annotation 
+				processors -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- version>3.3</version -->
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+ 			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+ 				
+				<!-- version>2.18.1</version -->
+		
+				<inherited>true</inherited>
+				<configuration>
+					<argLine>-Djava.security.egd=file:/dev/./urandom</argLine>
+					<excludes>
+						<exclude>**/*KT.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>demo.AccountApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>fabric8-maven-plugin</artifactId>
+				<version>${fabric8.version}</version>
+				<executions>
+					<execution>
+						<id>json</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>json</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>attach</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attach</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>${docker.maven.plugin.version}</version>
+				<configuration>
+					<images>
+						<image>
+							<name>${docker.image}</name>
+							<build>
+								<from>${docker.from}</from>
+								<assembly>
+									<basedir>/app</basedir>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<env>
+									<JAVA_APP_JAR>${project.build.finalName}.jar</JAVA_APP_JAR>
+								</env>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
+		</plugins>
+    </pluginManagement>				
+	</build>
 
 </project>
